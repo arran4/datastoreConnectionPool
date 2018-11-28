@@ -1,0 +1,7 @@
+/.idea
+/*.iml
+/gopath/bin
+/gopath/pkg
+/gopath/src/*
+!/gopath/src/address
+/address
