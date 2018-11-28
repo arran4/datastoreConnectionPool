@@ -1,4 +1,4 @@
-module bitbucket.org/arran4/address
+module github.com/arran4/datastoreConnectionPool
 
 require (
 	cloud.google.com/go v0.33.1
