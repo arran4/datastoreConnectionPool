@@ -37,6 +37,7 @@ func (pool *Pool) addDS() (*PoolItem, error) {
 		return nil, err
 	}
 	pool.pool = append(pool.pool, dsClient)
+	pool.open = append(pool.open, i)
 	pi := newPoolItem(pool, i)
 	return pi, nil
 }
@@ -99,8 +100,8 @@ func New(projectId string) *Pool {
 type PoolItem struct {
 	DSClient *datastore.Client
 	poolItem int
-	InUse bool
-	pool *Pool
+	InUse    bool
+	pool     *Pool
 }
 
 func (pi *PoolItem) Release() error {
