@@ -16,7 +16,7 @@ type Pool struct {
 	MaximumExisting int
 }
 
-func (pool *Pool) growToMimimum() error {
+func (pool *Pool) GrowToMimimum() error {
 	for i := 0; len(pool.open) < pool.MinimumOpen && len(pool.pool) < pool.MaximumExisting; i++ {
 		if _, err := pool.addDS(); err != nil {
 			return err
@@ -54,7 +54,7 @@ func newPoolItem(pool *Pool, index int) *PoolItem {
 
 func (pool *Pool) DSClient() (*PoolItem, error) {
 	if len(pool.open) == 0 {
-		if err := pool.growToMimimum(); err != nil {
+		if err := pool.GrowToMimimum(); err != nil {
 			if len(pool.open) == 0 {
 				return nil, err
 			}
@@ -77,7 +77,7 @@ var (
 
 func InitGlobalWithProjectId(projectId string) error {
 	globalPool = New(projectId)
-	if err := globalPool.growToMimimum(); err != nil {
+	if err := globalPool.GrowToMimimum(); err != nil {
 		return err
 	}
 	return nil
